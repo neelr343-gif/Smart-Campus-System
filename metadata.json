@@ -1,0 +1,6 @@
+{
+  "name": "IAR SmartCampus System - Smart College Portal & Visual AI Hub",
+  "description": "Next-generation smart campus ecosystem for college students featuring multimodal AI visual analysis for notes, cafeteria, facilities, and lost & found, plus live schedules, attendance calculator, and campus services.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

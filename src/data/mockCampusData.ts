@@ -1,0 +1,326 @@
+import { StudentProfile, Course, TimetableSlot, FacilitySpace, CampusNotice, LostFoundPost, Assignment } from '../types/campus.ts';
+
+export const initialStudent: StudentProfile = {
+  id: 'IAR/15454',
+  name: 'Neel Rana',
+  rollNumber: 'IAR/15454',
+  department: 'Computer Science & Information Technology',
+  semester: 6,
+  email: 'neelr343@gmail.com',
+  avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=400&auto=format&fit=crop&q=80',
+  cgpa: 8.92,
+  creditsEarned: 116,
+  totalCredits: 160,
+  bloodGroup: 'B+ Positive',
+  hostelBlock: 'IAR Koba Campus Residency',
+  roomNumber: 'A-204',
+};
+
+export const initialCourses: Course[] = [
+  {
+    id: 'cs-301',
+    code: 'CS-301',
+    name: 'Distributed Systems & Cloud Computing',
+    professor: 'Dr. Evelyn Reed',
+    credits: 4,
+    color: '#6366f1', // Indigo
+    room: 'Hall C-104',
+    totalClasses: 36,
+    attendedClasses: 32,
+    minAttendancePercent: 75,
+  },
+  {
+    id: 'cs-302',
+    code: 'CS-302',
+    name: 'Artificial Intelligence & Neural Nets',
+    professor: 'Prof. Marcus Chen',
+    credits: 4,
+    color: '#8b5cf6', // Violet
+    room: 'Lab Turing-2',
+    totalClasses: 32,
+    attendedClasses: 29,
+    minAttendancePercent: 75,
+  },
+  {
+    id: 'cs-303',
+    code: 'CS-303',
+    name: 'Compiler Design & Automata',
+    professor: 'Dr. Sophia Patel',
+    credits: 3,
+    color: '#ec4899', // Pink
+    room: 'Hall B-201',
+    totalClasses: 30,
+    attendedClasses: 22, // 73.3% - Warning below 75%
+    minAttendancePercent: 75,
+  },
+  {
+    id: 'cs-304',
+    code: 'CS-304',
+    name: 'Software Engineering & Agile Ops',
+    professor: 'Prof. David Vance',
+    credits: 3,
+    color: '#10b981', // Emerald
+    room: 'Hall A-305',
+    totalClasses: 28,
+    attendedClasses: 26,
+    minAttendancePercent: 75,
+  },
+  {
+    id: 'math-305',
+    code: 'MATH-305',
+    name: 'Advanced Probability & Random Processes',
+    professor: 'Dr. Robert King',
+    credits: 3,
+    color: '#f59e0b', // Amber
+    room: 'Seminar Hall 1',
+    totalClasses: 34,
+    attendedClasses: 28,
+    minAttendancePercent: 75,
+  },
+];
+
+export const initialTimetable: TimetableSlot[] = [
+  // Monday
+  { id: 't-mon-1', courseId: 'cs-301', day: 'Mon', startTime: '09:00', endTime: '10:15', room: 'Hall C-104', type: 'Lecture' },
+  { id: 't-mon-2', courseId: 'cs-302', day: 'Mon', startTime: '10:30', endTime: '11:45', room: 'Lab Turing-2', type: 'Lab' },
+  { id: 't-mon-3', courseId: 'cs-303', day: 'Mon', startTime: '13:00', endTime: '14:15', room: 'Hall B-201', type: 'Lecture' },
+  
+  // Tuesday
+  { id: 't-tue-1', courseId: 'cs-304', day: 'Tue', startTime: '09:30', endTime: '10:45', room: 'Hall A-305', type: 'Lecture' },
+  { id: 't-tue-2', courseId: 'math-305', day: 'Tue', startTime: '11:00', endTime: '12:15', room: 'Seminar Hall 1', type: 'Lecture' },
+  { id: 't-tue-3', courseId: 'cs-301', day: 'Tue', startTime: '14:00', endTime: '15:15', room: 'Hall C-104', type: 'Tutorial' },
+
+  // Wednesday
+  { id: 't-wed-1', courseId: 'cs-302', day: 'Wed', startTime: '09:00', endTime: '10:15', room: 'Lab Turing-2', type: 'Lecture' },
+  { id: 't-wed-2', courseId: 'cs-303', day: 'Wed', startTime: '10:30', endTime: '11:45', room: 'Hall B-201', type: 'Lecture' },
+  { id: 't-wed-3', courseId: 'cs-304', day: 'Wed', startTime: '13:30', endTime: '15:30', room: 'Hall A-305', type: 'Lab' },
+
+  // Thursday
+  { id: 't-thu-1', courseId: 'math-305', day: 'Thu', startTime: '09:30', endTime: '10:45', room: 'Seminar Hall 1', type: 'Lecture' },
+  { id: 't-thu-2', courseId: 'cs-301', day: 'Thu', startTime: '11:00', endTime: '12:15', room: 'Hall C-104', type: 'Lecture' },
+  { id: 't-thu-3', courseId: 'cs-302', day: 'Thu', startTime: '14:00', endTime: '15:15', room: 'Lab Turing-2', type: 'Tutorial' },
+
+  // Friday
+  { id: 't-fri-1', courseId: 'cs-303', day: 'Fri', startTime: '09:00', endTime: '10:15', room: 'Hall B-201', type: 'Tutorial' },
+  { id: 't-fri-2', courseId: 'cs-304', day: 'Fri', startTime: '10:30', endTime: '11:45', room: 'Hall A-305', type: 'Lecture' },
+  { id: 't-fri-3', courseId: 'math-305', day: 'Fri', startTime: '13:00', endTime: '14:15', room: 'Seminar Hall 1', type: 'Lecture' },
+];
+
+export const initialFacilities: FacilitySpace[] = [
+  {
+    id: 'fac-lib-3',
+    name: 'Central Library - 3rd Floor Silent Research Pods',
+    zone: 'Main Library',
+    category: 'study_pod',
+    capacity: 45,
+    currentOccupancy: 38,
+    isOpen: true,
+    openingHours: '08:00 AM - 11:30 PM',
+    features: ['Soundproof Booths', 'AC', 'Gigabit WiFi', 'Type-C Fast Charging', 'Ergonomic Herman Miller Chairs'],
+    noiseLevel: 'Silent',
+    powerOutletsAvailable: true,
+    image: 'https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=800&auto=format&fit=crop&q=80',
+  },
+  {
+    id: 'fac-ai-lab',
+    name: 'Ada Lovelace High-Performance AI Lab',
+    zone: 'Innovation Hub',
+    category: 'lab',
+    capacity: 30,
+    currentOccupancy: 14,
+    isOpen: true,
+    openingHours: '09:00 AM - 09:00 PM',
+    features: ['RTX 4090 Workstations', 'Dual 4K Monitors', 'Linux Ubuntu 24', 'Whiteboards'],
+    noiseLevel: 'Collaborative',
+    powerOutletsAvailable: true,
+    image: 'https://images.unsplash.com/photo-1581092921461-eab62e97a780?w=800&auto=format&fit=crop&q=80',
+  },
+  {
+    id: 'fac-cafe',
+    name: 'Atrium Food Court & Social Commons',
+    zone: 'Student Center',
+    category: 'cafeteria',
+    capacity: 220,
+    currentOccupancy: 165,
+    isOpen: true,
+    openingHours: '07:30 AM - 10:00 PM',
+    features: ['Cold Brew Bar', 'Outdoor Patio', 'Card & NFC payments', 'Vegetarian Counter'],
+    noiseLevel: 'Lively',
+    powerOutletsAvailable: false,
+    image: 'https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=800&auto=format&fit=crop&q=80',
+  },
+  {
+    id: 'fac-gym',
+    name: 'Spartan Fitness & Indoor Gymnasium',
+    zone: 'Sports Complex',
+    category: 'gym',
+    capacity: 60,
+    currentOccupancy: 22,
+    isOpen: true,
+    openingHours: '06:00 AM - 10:00 PM',
+    features: ['Squat Racks', 'Cardio Deck', 'Lockers & Showers', 'Certified Trainers'],
+    noiseLevel: 'Lively',
+    powerOutletsAvailable: false,
+    image: 'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&auto=format&fit=crop&q=80',
+  },
+];
+
+export const initialNotices: CampusNotice[] = [
+  {
+    id: 'not-1',
+    title: 'Mid-Semester Examinations Schedule & Seat Matrix Released',
+    department: 'Controller of Examinations',
+    category: 'exams',
+    priority: 'urgent',
+    date: 'Today, 08:30 AM',
+    summary: 'Mid-term exams commence on Nov 4. Check roll number allocations in Block A & C.',
+    content: 'All undergraduate and graduate students must download their hall tickets from the student ERP by Friday. Identity cards must be worn visibly at all examination halls. Calculators permitted only for MATH-305 and CS-301.',
+    attachmentName: 'Midterm_Matrix_Fall2026.pdf',
+    read: false,
+  },
+  {
+    id: 'not-2',
+    title: 'Annual HackCampus 2026: $15,000 Prize Pool Registration Closes Tonight',
+    department: 'Innovation & Incubation Cell',
+    category: 'events',
+    priority: 'important',
+    date: 'Yesterday',
+    summary: '36-hour hackathon on Smart Cities & AI Agents. Sponsored by top tech partners.',
+    content: 'Teams of 3-4 can register until 11:59 PM. Mentors from Google, AWS, and Anthropic will be on site. Food, Red Bull, and swag kits provided.',
+    attachmentName: 'HackCampus_Rules.pdf',
+    read: true,
+  },
+  {
+    id: 'not-3',
+    title: 'Library 24/7 Night Owl Reading Rooms Open for Study Week',
+    department: 'Central Library Board',
+    category: 'academic',
+    priority: 'important',
+    date: '2 days ago',
+    summary: 'Floor 1 & 2 will remain open throughout the night starting this Monday.',
+    content: 'Night study permits are not required. Campus security shuttle operates every 30 minutes from the library to all hostel blocks until 4 AM.',
+    read: true,
+  },
+];
+
+export const initialLostFound: LostFoundPost[] = [
+  {
+    id: 'lf-1',
+    title: 'Sony WH-1000XM5 Noise Canceling Headphones (Silver)',
+    category: 'electronics',
+    type: 'found',
+    location: 'Library 2nd Floor, Desk #42',
+    date: 'Today, 10:15 AM',
+    description: 'Found inside a grey hard-case with an orange USB-C cord. Has a small NASA sticker on the headband.',
+    imageUrl: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&auto=format&fit=crop&q=80',
+    status: 'handed_to_security',
+    reportedBy: 'Campus Guard Officer Miller',
+    contactEmail: 'security.desk@campus.edu',
+    aiVerified: true,
+  },
+  {
+    id: 'lf-2',
+    title: 'Scientific Calculator Casio fx-991EX Classwiz',
+    category: 'electronics',
+    type: 'found',
+    location: 'Lecture Hall C-104, Row 4',
+    date: 'Yesterday, 3:45 PM',
+    description: 'Black cover with initials "K.R." scratched into the back battery plate.',
+    imageUrl: 'https://images.unsplash.com/photo-1594980596870-8aa52a78d8cd?w=800&auto=format&fit=crop&q=80',
+    status: 'open',
+    reportedBy: 'Marcus Brody',
+    contactEmail: 'm.brody@campus.edu',
+    aiVerified: true,
+  },
+  {
+    id: 'lf-3',
+    title: 'Student ID Card & Dorm Room Keys on Blue Lanyard',
+    category: 'id_cards',
+    type: 'lost',
+    location: 'Near Campus Cafeteria / Basketball Court',
+    date: 'Oct 14, 2026',
+    description: 'Engineering faculty lanyard with Room 214 key and brass locker key.',
+    imageUrl: 'https://images.unsplash.com/photo-1582139329536-e7284fece509?w=800&auto=format&fit=crop&q=80',
+    status: 'open',
+    reportedBy: 'Elena Rostova',
+    contactEmail: 'elena.r@campus.edu',
+    aiVerified: false,
+  },
+];
+
+export const initialAssignments: Assignment[] = [
+  {
+    id: 'asg-1',
+    courseId: 'cs-301',
+    title: 'Implement Raft Consensus Protocol in Go',
+    dueDate: '2026-10-22',
+    priority: 'high',
+    completed: false,
+  },
+  {
+    id: 'asg-2',
+    courseId: 'cs-302',
+    title: 'Train Transformer Attention Model on Shakespeare Corpus',
+    dueDate: '2026-10-25',
+    priority: 'high',
+    completed: false,
+  },
+  {
+    id: 'asg-3',
+    courseId: 'cs-303',
+    title: 'Construct LR(1) Parsing Table for Micro-C grammar',
+    dueDate: '2026-10-28',
+    priority: 'medium',
+    completed: true,
+    submittedOn: '2026-10-15',
+  },
+];
+
+// Sample images for the Visual AI Hub demo with instant 1-click test
+export const sampleCampusImages = [
+  {
+    id: 'sample-notes',
+    title: 'Differential Calculus & Neural Weight Backprop Notes',
+    mode: 'study_notes' as const,
+    description: 'Handwritten equations, chain rule derivatives, and gradient vector diagrams.',
+    badge: 'Lecture Notes Solver',
+    imageUrl: 'https://images.unsplash.com/photo-1544717305-2782549b5136?w=800&auto=format&fit=crop&q=80',
+    samplePrompt: 'Explain these derivative equations step-by-step and give 2 probable exam questions based on this.',
+  },
+  {
+    id: 'sample-cafeteria',
+    title: 'Cafeteria Healthy Power Lunch Bowl',
+    mode: 'cafeteria_meal' as const,
+    description: 'Grain bowl with grilled tofu, quinoa, avocado, chickpeas, and tahini drizzle.',
+    badge: 'Nutrition & Diet Analyzer',
+    imageUrl: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?w=800&auto=format&fit=crop&q=80',
+    samplePrompt: 'Calculate the total calories, protein, and advise if this is suitable for post-workout and late-night study focus.',
+  },
+  {
+    id: 'sample-lost',
+    title: 'Lost Apple AirPods Pro with Custom Glow Case',
+    mode: 'lost_found' as const,
+    description: 'Wireless earbuds found on the bench outside Central Auditorium.',
+    badge: 'Lost & Found Classifier',
+    imageUrl: 'https://images.unsplash.com/photo-1600294037681-c80b4cb5b434?w=800&auto=format&fit=crop&q=80',
+    samplePrompt: 'Identify exact hardware generation, identify distinctive marks, and prepare an official campus recovery post.',
+  },
+  {
+    id: 'sample-facility',
+    title: 'Flickering 4K Projector & Cable Defect in Hall 102',
+    mode: 'facility_issue' as const,
+    description: 'Projector showing color artifact distortion and hanging HDMI connector.',
+    badge: 'Campus Facility Ticket',
+    imageUrl: 'https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c?w=800&auto=format&fit=crop&q=80',
+    samplePrompt: 'Assess the hardware fault, hazard score, and generate a work order for the AV technical team.',
+  },
+  {
+    id: 'sample-poster',
+    title: 'College Tech Fest 2026 Schedule & Workshop Poster',
+    mode: 'schedule_syllabus' as const,
+    description: 'Schedule board showing tracks for Quantum Computing, Robotics, and Pitch Day.',
+    badge: 'Schedule & Poster OCR',
+    imageUrl: 'https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&auto=format&fit=crop&q=80',
+    samplePrompt: 'Extract all the workshop times, venues, and registration deadlines into a clear chronological list.',
+  },
+];
